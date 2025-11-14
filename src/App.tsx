@@ -1,12 +1,11 @@
-// Eight Queens Puzzle Visualizer - Simple & Clean
-
 import { useEffect, useRef, useState } from "react";
 
-import { Chessboard } from "./Chessboard";
-import { Controls } from "./Controls";
-import { Gallery } from "./Gallery";
+import Chessboard from "@/components/Chessboard";
+import Controls from "@/components/Controls";
+import Gallery from "@/components/Gallery";
+import { TARGET_SOLUTIONS } from "@/utils";
+
 import { SimpleQueensSolver } from "./solver";
-import { TARGET_SOLUTIONS } from "./utils";
 
 export default function App() {
   // Solver instance

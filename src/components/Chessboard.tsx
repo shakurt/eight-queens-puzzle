@@ -1,17 +1,14 @@
-// Chessboard component
-
-import { QueenIcon } from "./QueenIcon";
-import { BOARD_SIZE } from "./utils";
-
-import type { Board } from "./utils";
+import { BlackQueenIcon, WhiteQueenIcon } from "@/components/icons/QueenIcon";
+import { BOARD_SIZE } from "@/utils";
+import type { Board } from "@/utils";
 
 interface ChessboardProps {
   board: Board;
 }
 
-export function Chessboard({ board }: ChessboardProps) {
+const Chessboard: React.FC<ChessboardProps> = ({ board }) => {
   return (
-    <div className="w-full max-w-[480px]">
+    <section className="w-full max-w-[480px]">
       <div className="grid grid-cols-8 overflow-hidden rounded-lg border-2 border-gray-800">
         {Array.from({ length: BOARD_SIZE }).map((_, row) =>
           Array.from({ length: BOARD_SIZE }).map((__, col) => {
@@ -27,7 +24,7 @@ export function Chessboard({ board }: ChessboardProps) {
               >
                 {hasQueen && (
                   <div className="h-3/4 w-3/4">
-                    <QueenIcon />
+                    {isDark ? <WhiteQueenIcon /> : <BlackQueenIcon />}
                   </div>
                 )}
               </div>
@@ -36,9 +33,11 @@ export function Chessboard({ board }: ChessboardProps) {
         )}
       </div>
 
-      <div className="mt-3 text-sm text-gray-400">
+      <p className="mt-3 text-sm text-gray-400">
         Queens placed: {board.filter((c) => c !== -1).length} / {BOARD_SIZE}
-      </div>
-    </div>
+      </p>
+    </section>
   );
-}
+};
+
+export default Chessboard;

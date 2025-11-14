@@ -1,5 +1,3 @@
-// Controls panel
-
 interface ControlsProps {
   isRunning: boolean;
   isComplete: boolean;
@@ -12,7 +10,7 @@ interface ControlsProps {
   onSpeedChange: (speed: number) => void;
 }
 
-export function Controls({
+const Controls: React.FC<ControlsProps> = ({
   isRunning,
   isComplete,
   speed,
@@ -22,7 +20,7 @@ export function Controls({
   onStep,
   onReset,
   onSpeedChange,
-}: ControlsProps) {
+}) => {
   return (
     <div className="space-y-4">
       {/* Buttons */}
@@ -95,4 +93,6 @@ export function Controls({
       </div>
     </div>
   );
-}
+};
+
+export default Controls;

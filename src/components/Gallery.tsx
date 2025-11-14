@@ -1,11 +1,9 @@
-// Gallery of solutions
-
 interface GalleryProps {
   solutions: string[];
   maxSolutions: number;
 }
 
-export function Gallery({ solutions, maxSolutions }: GalleryProps) {
+const Gallery: React.FC<GalleryProps> = ({ solutions, maxSolutions }) => {
   const isComplete = solutions.length >= maxSolutions;
 
   return (
@@ -54,4 +52,6 @@ export function Gallery({ solutions, maxSolutions }: GalleryProps) {
       )}
     </div>
   );
-}
+};
+
+export default Gallery;

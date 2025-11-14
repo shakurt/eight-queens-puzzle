@@ -1,8 +1,8 @@
 // Simple backtracking solver for Eight Queens
 
-import { BOARD_SIZE, boardToImage, boardToKey, isSafe } from "./utils";
+import type { Board } from "@/utils/index";
+import { BOARD_SIZE, boardToImage, boardToKey, isSafe } from "@/utils/index";
 
-import type { Board } from "./utils";
 export interface SolverState {
   board: Board;
   currentRow: number;

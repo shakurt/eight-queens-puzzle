@@ -1,15 +1,15 @@
 const Footer = () => {
   return (
-    <footer className="bg-card py-2 text-gray-300">
-      <div className="container text-center">
+    <footer className="bg-card mt-auto py-4 text-gray-300">
+      <div className="container mx-auto text-center">
         <p className="text-xs">
           &copy; {new Date().getFullYear()}{" "}
           <a
-            href="https://github.com/shakurt/puzzle-solver"
+            href="https://github.com/shakurt/eight-queens-puzzle"
             target="_blank"
             className="underline"
           >
-            Puzzle Solver
+            Eight Queens Puzzle
           </a>
           . All rights reserved.
           {" • "}Developed by{" "}

@@ -1,24 +1,8 @@
-// Utilities for the Eight Queens puzzle solver
-// This file contains helper functions for board validation and image generation
+import { BOARD_SIZE } from "@/constants";
+import type { Board } from "@/types";
 
-// A Board is an array where each index represents a row
-// and the value at that index represents the column where a queen is placed
-// A value of -1 means no queen has been placed in that row yet
-export type Board = number[];
-
-// Constants for the puzzle
-export const BOARD_SIZE = 8;
-export const TARGET_SOLUTIONS = 12;
-
-/**
- * Checks if it's safe to place a queen at the specified position
- * A queen can attack any piece in the same column, row, or diagonal
- *
- * @param board - The current board state
- * @param targetRow - The row where we want to place a queen
- * @param targetColumn - The column where we want to place a queen
- * @returns true if the position is safe, false otherwise
- */
+//  Checks if it's safe to place a queen at the specified position
+// A queen can attack any piece in the same column, row, or diagonal
 export function isSafe(
   board: Board,
   targetRow: number,
@@ -46,38 +30,22 @@ export function isSafe(
     }
   }
 
-  // No conflicts found - this position is safe
-  return true;
+  return true; // Safe Position
 }
 
-/**
- * Converts a board configuration to a unique string key.
- * This is used to detect duplicate solutions
- *
- * @param board - The board to convert
- * @returns A string representation of the board
- */
+// This is used to detect duplicate solutions
 export function boardToKey(board: Board): string {
   return board.join(",");
 }
 
-/**
- * Creates an image of the current board state
- * This generates a PNG image showing the chessboard with queens placed
- *
- * @param board - The board state to render
- * @param imageSize - The size of the square image in pixels (default 360)
- * @returns A data URL containing the PNG image
- */
 export function boardToImage(board: Board, imageSize = 360): string {
-  // Create a canvas element for drawing
   const canvas = document.createElement("canvas");
   canvas.width = imageSize;
   canvas.height = imageSize;
 
   const context = canvas.getContext("2d");
   if (!context) {
-    return ""; // Return empty string if canvas context is not available
+    return "";
   }
 
   // Calculate the size of each square on the board
@@ -86,7 +54,6 @@ export function boardToImage(board: Board, imageSize = 360): string {
   // Draw the chessboard squares (alternating black and white)
   for (let row = 0; row < BOARD_SIZE; row++) {
     for (let column = 0; column < BOARD_SIZE; column++) {
-      // A square is dark if row + column is odd
       const isDarkSquare = (row + column) % 2 === 1;
       context.fillStyle = isDarkSquare ? "#000000" : "#ffffff";
 
@@ -115,28 +82,13 @@ export function boardToImage(board: Board, imageSize = 360): string {
     const queenY = row * squareSize;
     const padding = squareSize * 0.15;
 
-    // Draw a simple crown shape to represent the queen
     context.beginPath();
-
-    // Bottom left of crown
     context.moveTo(queenX + padding, queenY + squareSize - padding);
-
-    // Left edge going up
     context.lineTo(queenX + padding, queenY + padding);
-
-    // First peak
     context.lineTo(queenX + squareSize * 0.4, queenY + squareSize * 0.4);
-
-    // Middle peak
     context.lineTo(queenX + squareSize * 0.5, queenY + padding);
-
-    // Second peak
     context.lineTo(queenX + squareSize * 0.6, queenY + squareSize * 0.4);
-
-    // Right edge going up
     context.lineTo(queenX + squareSize - padding, queenY + padding);
-
-    // Right edge going down
     context.lineTo(
       queenX + squareSize - padding,
       queenY + squareSize - padding
